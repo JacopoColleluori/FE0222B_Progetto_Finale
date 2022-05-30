@@ -1,0 +1,150 @@
+<div class="container text-center  w-75">
+  <mat-card id="login" class="m-5 ">
+    <mat-card-title>Pagina di Registrazione</mat-card-title>
+
+    <form [formGroup]="form" (ngSubmit)="submit(form.value)">
+
+       <!-- username -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="username" class="form-label fs-4 mb-3 mt-5 "
+          >Username</mat-label
+        >
+
+        <input
+          id="username"
+          required
+          matInput
+          formControlName="username"
+          class="form-control fs-4"
+          type="text"
+          placeholder="inserisci qui il tuo username"
+        />
+
+        <mat-error
+          class="mt-3"
+          color="warn"
+          *ngIf="
+            form.controls['username'].touched &&
+            form.controls['username'].errors
+          "
+        >
+          Campo Obbligatorio / username non valido, min. 6 caratteri
+        </mat-error>
+      </mat-form-field>
+
+      <!-- password -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="password" class="form-label fs-4 mb-3 mt-5"
+          >Password</mat-label
+        >
+        <input
+          matInput
+          id="password"
+          required
+          formControlName="password"
+          class="form-control fs-4"
+          type="password"
+          placeholder="inserisci qui la tua password"
+        />
+        <mat-error
+          class="mt-3"
+          color="warn"
+          *ngIf="
+            form.controls['password'].touched &&
+            form.controls['password'].errors
+          "
+        >
+          Campo Obbligatorio / Password non valida, min. 6 caratteri
+        </mat-error>
+      </mat-form-field>
+
+      <!-- email -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="email" class="form-label fs-4 mb-3 mt-5"
+          >Email</mat-label
+        >
+        <input
+          matInput
+          id="email"
+          required
+          formControlName="email"
+          class="form-control fs-4"
+          type="email"
+          placeholder="inserisci qui la tua email"
+        />
+        <mat-error
+          class="mt-3"
+          color="red"
+          *ngIf="form.controls['email'].touched"
+        >
+          Campo obbligatorio /email non valida
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Select per il ruolo -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="roles" class="form-label fs-4 mb-3 mt-5"
+          >Ruolo</mat-label
+        >
+        <mat-select id="role" class="form-control fs-4" type="email"
+        formControlName="roles">
+          <mat-option value="">Seleziona un ruolo</mat-option>
+          <mat-option value="user">User</mat-option>
+          <mat-option value="admin">Admin</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+       <!-- nome -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="nome" class="form-label fs-4 mb-3 mt-5"
+          >Nome</mat-label
+        >
+        <input
+          matInput
+          formControlName="nome"
+          id="nome"
+          class="form-control fs-4"
+          type="text"
+          placeholder="inserisci qui il tuo nome"
+        />
+      </mat-form-field>
+
+      <!-- cognome -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="cognome" class="form-label fs-4 mb-3 mt-5"
+          >Cognome</mat-label
+        >
+        <input
+          matInput
+          formControlName="cognome"
+          id="cognome"
+          class="form-control fs-4"
+          type="text"
+          placeholder="inserisci qui il tuo cognome"
+        />
+      </mat-form-field>
+
+      <!-- bottoni -->
+
+
+
+          <button
+          mat-raised-button
+          color="primary"
+            type="submit"
+            [disabled]="form.invalid"
+            class="btn btn-primary fs-4 mt-3 w-50"
+          >
+            Iscriviti
+          </button>
+
+
+    </form>
+  </mat-card>
+</div>

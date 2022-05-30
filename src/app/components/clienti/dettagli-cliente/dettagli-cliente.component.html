@@ -1,0 +1,300 @@
+<div class="container text-center fs-3 w-75">
+  <mat-card id="login" class="m-5">
+    <mat-card-title>Pagina di Registrazione</mat-card-title>
+
+    <form [formGroup]="form" (ngSubmit)="submit(form)">
+      <!-- username -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="partitaIva" class="form-label fs-4 mb-3 mt-5"
+          >Partita Iva</mat-label
+        >
+
+        <input
+          id="partitaIva"
+          required
+          matInput
+          formControlName="partitaIva"
+          class="form-control fs-5"
+          type="text"
+          placeholder="inserisci qui la tua partita Iva"
+        />
+
+        <mat-error
+          color="warn"
+          *ngIf="
+            form.controls['partitaIva'].touched &&
+            form.controls['partitaIva'].errors
+          "
+        >
+          Campo Obbligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <!-- password -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="ragioneSociale" class="form-label fs-4 mb-3 mt-5">
+          ragioneSociale</mat-label
+        >
+        <input
+          matInput
+          id="ragioneSociale"
+          required
+          formControlName="ragioneSociale"
+          class="form-control fs-4"
+          type="ragioneSociale"
+          placeholder="inserisci qui la tua ragione Sociale"
+        />
+        <mat-error
+          color="warn"
+          *ngIf="
+            form.controls['ragioneSociale'].touched &&
+            form.controls['ragioneSociale'].errors
+          "
+        >
+          Campo Obbligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <!-- email -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="email" class="form-label fs-4 mb-3 mt-5"
+          >Email</mat-label
+        >
+        <input
+          matInput
+          id="email"
+          required
+          formControlName="email"
+          class="form-control fs-4"
+          type="email"
+          placeholder="inserisci qui la tua email"
+        />
+        <mat-error color="red" *ngIf="form.controls['email'].touched">
+          Campo obbligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <!-- email contatto -->
+      <mat-form-field class="form-group">
+        <mat-label for="emailContatto" class="form-label fs-4 mb-3 mt-5"
+          >email contatto</mat-label
+        >
+        <input
+          matInput
+          id="emailContatto"
+          required
+          formControlName="emailContatto"
+          class="form-control fs-4"
+          type="emailContatto"
+          placeholder="inserisci qui l'email contatto"
+        />
+        <mat-error color="red" *ngIf="form.controls['emailContatto'].touched">
+          Campo obbligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <!-- tipo cliente -->
+      <mat-form-field class="form-group">
+        <mat-label for="tipoCliente">Scegli il tipo cliente</mat-label>
+        <mat-select formControlName="tipoCliente">
+          <mat-option *ngFor="let tipo of tipiCliente" value="{{ tipo }}">{{
+            tipo
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- nome contatto-->
+
+      <mat-form-field class="form-group">
+        <mat-label for="nomeContatto" class="form-label fs-4 mb-3 mt-5"
+          >Nome Contatto</mat-label
+        >
+        <input
+          matInput
+          formControlName="nomeContatto"
+          id="nomeContatto"
+          class="form-control fs-4"
+          type="text"
+          placeholder="inserisci qui il nome del Contatto"
+        />
+      </mat-form-field>
+
+      <!-- cognome contatto -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="cognomeContatto" class="form-label fs-4 mb-3 mt-5"
+          >Cognome Contatto</mat-label
+        >
+        <input
+          matInput
+          formControlName="cognomeContatto"
+          id="cognomeContatto"
+          class="form-control fs-4"
+          type="text"
+          placeholder="inserisci qui il  cognome del Contatto"
+        />
+      </mat-form-field>
+
+      <!-- telefono contatto -->
+
+      <mat-form-field class="form-group">
+        <mat-label for="telefonoContatto" class="form-label fs-4 mb-3 mt-5"
+          >Telefono Contatto</mat-label
+        >
+        <input
+          matInput
+          formControlName="telefonoContatto"
+          id="telefonoContatto"
+          class="form-control fs-4"
+          type="text"
+          placeholder="inserisci qui il  telefono del Contatto"
+        />
+      </mat-form-field>
+
+      <!-- telefono-->
+
+      <mat-form-field class="form-group">
+        <mat-label for="telefonoo" class="form-label fs-4 mb-3 mt-5"
+          >Telefono
+        </mat-label>
+        <input
+          matInput
+          formControlName="telefono"
+          id="telefono"
+          class="form-control fs-4"
+          type="text"
+          placeholder="inserisci qui il tuo numero telefono"
+        />
+      </mat-form-field>
+
+      <!-- Pec-->
+
+      <mat-form-field class="form-group">
+        <mat-label for="pec" class="form-label fs-4 mb-3 mt-5">Pec </mat-label>
+        <input
+          matInput
+          formControlName="pec"
+          id="pec"
+          class="form-control fs-4"
+          type="text"
+          placeholder="inserisci qui la tua pec"
+        />
+      </mat-form-field>
+
+      <!-- indirizzoSedeOperativa -->
+      <div formGroupName="indirizzoSedeOperativa">
+        <!-- Via-->
+        <mat-form-field class="form-group">
+          <mat-label for="via" class="form-label fs-4 mb-3 mt-5"
+            >via
+          </mat-label>
+          <input
+            matInput
+            formControlName="via"
+            id="via"
+            class="form-control fs-4"
+            type="text"
+            placeholder="inserisci qui la tua via"
+          />
+        </mat-form-field>
+
+        <!-- Cap-->
+        <mat-form-field class="form-group">
+          <mat-label for="cap" class="form-label fs-4 mb-3 mt-5"
+            >cap
+          </mat-label>
+          <input
+            matInput
+            formControlName="cap"
+            id="cap"
+            class="form-control fs-4"
+            type="text"
+            placeholder="inserisci qui la tua cap"
+          />
+        </mat-form-field>
+
+        <!-- Civico-->
+        <mat-form-field class="form-group">
+          <mat-label for="civico" class="form-label fs-4 mb-3 mt-5"
+            >civico
+          </mat-label>
+          <input
+            matInput
+            formControlName="civico"
+            id="civico"
+            class="form-control fs-4"
+            type="text"
+            placeholder="inserisci qui la tua civico"
+          />
+        </mat-form-field>
+
+        <!-- Località-->
+        <mat-form-field class="form-group">
+          <mat-label for="localita" class="form-label fs-4 mb-3 mt-5">
+            localita
+          </mat-label>
+          <input
+            matInput
+            formControlName="localita"
+            id="localita"
+            class="form-control fs-4"
+            type="text"
+            placeholder="inserisci qui la tua località"
+          />
+        </mat-form-field>
+
+        <!-- comune -->
+        <div formGroupName="comune">
+          <!-- id-->
+          <mat-form-field class="form-group">
+            <mat-label for=" id" class="form-label fs-4 mb-3 mt-5">
+              Scegli il comune
+            </mat-label>
+
+            <mat-select formControlName="id" id="id" name="id">
+              <mat-option value=""></mat-option>
+              <mat-option
+                *ngFor="let com of this.comuni"
+
+                value="{{ com.id }}"
+                >{{ com.nome }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+
+          <!-- <div formGroupName="provincia"> -->
+            <mat-form-field class="form-group">
+              <mat-label for=" id" class="form-label fs-4 mb-3 mt-5">
+                Provincia
+              </mat-label>
+              <mat-select class="form-control" formControlName="provincia" id="provincia">
+                <mat-option value="0"></mat-option>
+                <mat-option
+                  *ngFor="let prov of this.province"
+
+                  value="{{ prov.id }}"
+                  >{{ prov.nome }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          <!-- </div> -->
+
+        </div>
+      </div>
+      <!-- bottoni -->
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="form.invalid"
+        class="btn btn-primary fs-4 mt-3 w-50"
+      >
+        Aggiungi Cliente
+      </button>
+    </form>
+  </mat-card>
+</div>

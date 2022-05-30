@@ -1,0 +1,51 @@
+<div class="container text-center text-white fs-3 w-75">
+  <mat-card class="m-5">
+    <mat-card-title><p></p></mat-card-title>
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">Pagina di Login</h2>
+      <div class="row">
+        <div class="col text-center">
+          <form [formGroup]="form" (ngSubmit)="submit(form.value)">
+
+              <label for="username" class="form-label fs-4 mb-3 mt-3"> Username</label>
+              <input
+                id="username"
+                required
+                formControlName="username"
+                class="form-control fs-4"
+                type="text"
+                placeholder="inserisci qui il tuo username"
+              />
+              <span class="error" *ngIf="form.controls['username'].touched  && form.controls['username'].errors">Campo Obbligatorio / Username Errato</span>
+
+              <label for="password" class="form-label fs-4 mb-3 mt-3 ">Password</label>
+              <input
+                id="password"
+                required
+                formControlName="password"
+                class="form-control fs-4"
+                type="password"
+                placeholder="inserisci qui la tua password"
+              />
+              <span class="error" *ngIf="form.controls['password'].touched  && form.controls['password'].errors">Campo Obbligatorio / Password Errata</span>
+
+
+            <div class="row">
+              <div class="col d-grid">
+               <mat-card-actions>
+                  <button  mat-button   color="primary"
+                    type="submit"
+                    [disabled]="form.invalid"
+                    class="btn btn-primary fs-4 mt-3"
+                  >
+                    Login
+                  </button> <button type="button" mat-button [routerLink]="['/sign-up']">Registrati</button>
+               </mat-card-actions>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

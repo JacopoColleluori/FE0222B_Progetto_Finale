@@ -1,0 +1,28 @@
+
+<div class="container-fluid d-flex flex-wrap justify-content-evenly ">
+  <mat-card *ngFor="let fatt of this.fatture.content" class="m-4 bg-dark text-light">
+    <mat-card-title>
+      Fattura di {{fatt.cliente.ragioneSociale}} N.:{{fatt.numero}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      data: {{fatt.data | date:'dd-MM-yyyy'}}
+    </mat-card-subtitle>
+    <mat-card-content>
+      importo fattura: {{fatt.importo}} €<br>
+      Id Fattura: {{fatt.id}} <br>
+      Stato Fattura: {{fatt.stato.nome}}
+    </mat-card-content>
+    <mat-card-actions class="d-flex justify-content-evenly">
+<button mat-raised-button color="primary" [routerLink]="['lista-fatture/',fatt.id]">Modifica</button> <button mat-raised-button color="warn">elimina</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<mat-paginator
+  [length]="this.fatture.totalElements"
+  [pageSizeOptions]="[20,10,5,50]"
+  aria-label="Select page"
+  (page)="onPageEvent($event)"
+  class="bg-dark text-light"
+  >
+  </mat-paginator>
+

@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+  font-size: 2rem;
+  background-color: #232323;
+  color: white;
+}
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
+color:white;
+}
+tr{
+ border-bottom: solid 2px #2c2a2a;
+}
+.mat-paginator-container{
+  background-color: #232323;
+  color: white;
+}
