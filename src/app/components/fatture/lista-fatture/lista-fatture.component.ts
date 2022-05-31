@@ -22,7 +22,9 @@ export class ListaFattureComponent implements OnInit {
 
   ngOnInit(): void {
     //presa idCliente se ci sta
+
     this.GetClientId();
+
     //presa fatture
     if (this.clientId) {
       this.fatturaSrv
@@ -56,8 +58,17 @@ export class ListaFattureComponent implements OnInit {
     }
   }
   delete(id: number) {
+    console.log(id);
+    for(let i=0;i<this.fatture.content.length;i++){
+      if(this.fatture.content[i].id==id){
+      this.fatture.content.splice(i,1)
+      // this.dataClients.content=[...this.dataClients.content]
+      console.log(this.fatture.content)
+      }
+    }
     this.fatturaSrv.deleteFattura(id).subscribe((res) => {
       console.log(res);
+      this.fatture.content=[...this.fatture.content]
     });
   }
   GetClientId() {

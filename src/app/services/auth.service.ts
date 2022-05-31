@@ -33,7 +33,5 @@ export class AuthService {
   get isLogged():boolean{
     return localStorage.getItem('current-user')!= null;
   }
-  // get CurrentUser():User{
-  //   return JSON.parse(localStorage.getItem('current-user')) as User || null;
-  // }
+
 }

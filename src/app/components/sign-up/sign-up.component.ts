@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
     username: '',
     password: '',
     email: '',
-    roles: [''],
+    roles: [],
     nome: '',
     cognome: '',
   };
@@ -57,7 +57,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {}
 
   submit(DatiForm: {
-    roles: any;
+    roles: never;
     username: string;
     password: string;
     email: string;

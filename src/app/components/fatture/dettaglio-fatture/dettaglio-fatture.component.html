@@ -7,7 +7,7 @@
       Fattura</mat-card-title
     >
 
-    <form [formGroup]="form" (ngSubmit)="submit(form)">
+    <form [formGroup]="form" (ngSubmit)="submit(form.getRawValue())">
       <!-- data -->
       <mat-form-field>
         <mat-label

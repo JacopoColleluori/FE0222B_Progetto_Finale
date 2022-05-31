@@ -1,7 +1,8 @@
 <mat-toolbar class="justify-content-evenly bg-dark text-light">
   <span >Gestionale Clienti</span>
+  <button mat-button *ngIf="this.control" [routerLink]="['/']">Home</button>
 <button mat-button *ngIf="!this.control" [routerLink]="['/login']">Login</button>
-<button mat-button [routerLink]="['/sign-up']">SignUp</button>
+<button mat-button [routerLink]="['/signup']">SignUp</button>
 <button mat-button *ngIf="this.control" [routerLink]="['/clienti']">Clienti</button>
 <button mat-button *ngIf="this.control" [routerLink]="['/fatture']">Fatture</button>
 <button mat-button *ngIf="this.control" [routerLink]="['/user']">Utenti</button>

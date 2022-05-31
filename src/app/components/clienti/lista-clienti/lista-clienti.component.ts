@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
+import { Cliente } from 'src/app/models/cliente';
 import { ClientiService } from 'src/app/services/clienti.service';
 
 @Component({
@@ -40,9 +42,21 @@ export class ListaClientiComponent implements OnInit {
   }
   delete(id: number) {
     console.log(id);
-    this.dataClients.content[id];
-    this.clientSrv.deleteClients(id).subscribe((res) => {});
-  }
+    for(let i=0;i<this.dataClients.content.length;i++){
+      if(this.dataClients.content[i].id==id){
+      this.dataClients.content.splice(i,1)
+      // this.dataClients.content=[...this.dataClients.content]
+      console.log(this.dataClients.content)
+      }
+    }
+  this.clientSrv.deleteClients(id).subscribe((res) => {
+    console.log(res);
+  this.dataClients.content=[...this.dataClients.content]
+  });
+  };
+
+
+
 
   dettagliCliente(id:number){}
 }

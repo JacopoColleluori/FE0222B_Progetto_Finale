@@ -22,12 +22,12 @@ export class DettaglioFattureComponent implements OnInit {
   checkFatt!: boolean;
   statiFatt!: any;
   fattura!: Fattura;
-  clienteId!:number;
+  clienteId!: number;
   constructor(
     private formBuilder: FormBuilder,
     private currentRoute: ActivatedRoute,
     private fatturaSrv: FatturaService,
-    private router :Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +65,6 @@ export class DettaglioFattureComponent implements OnInit {
     //controllo dell'id fattura
     this.checkFattId(this.fattID);
 
-
     //controllo campi da id
     if (this.checkFatt) {
       this.form.disable();
@@ -75,19 +74,11 @@ export class DettaglioFattureComponent implements OnInit {
     }
 
     //riempimento form
-    this.fillForm()
+    this.fillForm();
   }
 
-  submit(form: {
-    value: {
-      data: string;
-      numero: number;
-      anno: number;
-      importo: number;
-      stato: number;
-    };
-  }) {
-    console.log(form.value);
+  submit(form:any) {
+    console.log(form);
     if (this.fattID == 0) {
       this.fattura = {
         id: 0,
@@ -99,18 +90,24 @@ export class DettaglioFattureComponent implements OnInit {
         cliente: {},
       };
     }
-    this.fattura.id=this.fattID;
-    this.fattura.data=form.value.data;
-    this.fattura.numero=form.value.numero;
-    this.fattura.anno=form.value.anno;
-    this.fattura.importo=form.value.importo;
-    this.fattura.stato.id=form.value.stato;
-   if(this.clienteId){this.fattura.cliente.id=this.clienteId}
-   this.fatturaSrv.setFattura(this.fattID,this.fattura).subscribe(res=>{
-     console.log(res)
-     if(this.clienteId){this.router.navigate(['/clienti/fatture',this.clienteId])}else{
-     this.router.navigate(['/fatture'])}
-   })
+    this.fattura.id = this.fattID;
+    this.fattura.data = form.data;
+    this.fattura.numero = +form.numero;
+    this.fattura.anno = form.anno;
+    this.fattura.importo = +form.importo;
+    this.fattura.stato.id = form.stato;
+    console.log(this.fattura)
+    if (this.clienteId) {
+      this.fattura.cliente.id = this.clienteId;
+    }
+    this.fatturaSrv.setFattura(this.fattID, this.fattura).subscribe((res) => {
+      console.log(res);
+      if (this.clienteId) {
+        this.router.navigate(['/clienti/fatture', this.clienteId]);
+      } else {
+        this.router.navigate(['/fatture']);
+      }
+    });
   }
   GetFatturaId() {
     this.sub = this.currentRoute.params.subscribe((res) => {
@@ -120,10 +117,10 @@ export class DettaglioFattureComponent implements OnInit {
     });
     return this.fattID;
   }
-  getClienteId(){
-    this.sub=this.currentRoute.params.subscribe(res=>{
-   this.clienteId=+res['idCliente']
-    })
+  getClienteId() {
+    this.sub = this.currentRoute.params.subscribe((res) => {
+      this.clienteId = +res['idCliente'];
+    });
   }
   checkFattId(id: number) {
     if (id != 0) {
@@ -132,24 +129,23 @@ export class DettaglioFattureComponent implements OnInit {
       this.checkFatt = false;
     }
   }
-  restoreData(fatturaId:number){
-    this.fatturaSrv.getFattureById(fatturaId).subscribe(res=>{
-   console.log(res);
-   this.fattura=res;
-   this.form.patchValue({
-     data:this.fattura.data,
-     numero:this.fattura.numero,
-     anno:this.fattura.anno,
-     importo:this.fattura.importo,
-     stato:this.fattura.stato.id
-   })
-    })
+  restoreData(fatturaId: number) {
+    this.fatturaSrv.getFattureById(fatturaId).subscribe((res) => {
+      console.log(res);
+      this.fattura = res;
+      this.form.patchValue({
+        data: this.fattura.data,
+        numero: this.fattura.numero,
+        anno: this.fattura.anno,
+        importo: this.fattura.importo,
+        stato: this.fattura.stato.id,
+      });
+    });
   }
-
 
   fillForm() {
     if (this.fattID != 0) {
-      console.log(this.fattID)
+      console.log(this.fattID);
       this.restoreData(this.fattID);
     }
   }
