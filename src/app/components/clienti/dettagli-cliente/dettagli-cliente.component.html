@@ -1,7 +1,9 @@
 <div class="container text-center fs-3 w-75">
   <mat-card id="login" class="m-5">
-    <mat-card-title>Pagina di Registrazione</mat-card-title>
-
+    <mat-card-title class="text-center d-flex flex-nowrap justify-content-center"
+      >Pagina di <p *ngIf="this.check" class="ps-2 pe-2"> Dettagli/Modifica</p><p *ngIf="!this.check" class="ps-2 pe-2"> Registrazione</p>
+      Cliente</mat-card-title
+    >
     <form [formGroup]="form" (ngSubmit)="submit(form)">
       <!-- username -->
 
@@ -258,7 +260,6 @@
               <mat-option value=""></mat-option>
               <mat-option
                 *ngFor="let com of this.comuni"
-
                 value="{{ com.id }}"
                 >{{ com.nome }}</mat-option
               >
@@ -266,22 +267,24 @@
           </mat-form-field>
 
           <!-- <div formGroupName="provincia"> -->
-            <mat-form-field class="form-group">
-              <mat-label for=" id" class="form-label fs-4 mb-3 mt-5">
-                Provincia
-              </mat-label>
-              <mat-select class="form-control" formControlName="provincia" id="provincia">
-                <mat-option value="0"></mat-option>
-                <mat-option
-                  *ngFor="let prov of this.province"
-
-                  value="{{ prov.id }}"
-                  >{{ prov.nome }}</mat-option
-                >
-              </mat-select>
-            </mat-form-field>
+          <mat-form-field class="form-group">
+            <mat-label for=" id" class="form-label fs-4 mb-3 mt-5">
+              Provincia
+            </mat-label>
+            <mat-select
+              class="form-control"
+              formControlName="provincia"
+              id="provincia"
+            >
+              <mat-option value="0"></mat-option>
+              <mat-option
+                *ngFor="let prov of this.province"
+                value="{{ prov.id }}"
+                >{{ prov.nome }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
           <!-- </div> -->
-
         </div>
       </div>
       <!-- bottoni -->

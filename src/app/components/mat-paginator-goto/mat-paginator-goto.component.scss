@@ -1,0 +1,25 @@
+//Bootstrap Temp
+.d-flex {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+//Original
+.go-to-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  mat-form-field {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  .go-to-label {
+    margin: 0 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.54);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+}
+
+/**Created by Sameer Khan**/

@@ -13,6 +13,7 @@ import { ListaClientiComponent } from './components/clienti/lista-clienti/lista-
 import { DettagliClienteComponent } from './components/clienti/dettagli-cliente/dettagli-cliente.component';
 import { ListaUserComponent } from './components/user/lista-user/lista-user.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatPaginatorGotoComponent } from './components/mat-paginator-goto/mat-paginator-goto.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,12 +24,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIcon, MatIconModule} from '@angular/material/icon';
+import { MatIconModule} from '@angular/material/icon';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptor/token.interceptor';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +46,8 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     ListaFattureComponent,
     ListaClientiComponent,
     DettagliClienteComponent,
-    ListaUserComponent
+    ListaUserComponent,
+    MatPaginatorGotoComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +63,10 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     MatPaginatorModule,
     MatTableModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule
   ],
   providers: [
     {
@@ -65,6 +74,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
       useClass: TokenInterceptor,
       multi: true,
     },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent],
 })

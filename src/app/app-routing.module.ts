@@ -16,41 +16,41 @@ component:HomeComponent},
   {path:"login",
 component:LoginComponent},
 {
-  path:"sign-up",
+  path:"signup",
   component:SignUpComponent
 },
 {
-  path:"lista-clienti",
+  path:"clienti",
   component:ListaClientiComponent,
   canActivate:[AuthGuard]
 },
 {
-  path:"lista-clienti/:id",
+  path:"clienti/:id",
   component:DettagliClienteComponent,
   canActivate:[AuthGuard]
 },
 {
-  path:"lista-fatture/:id",
+  path:"fatture/:id",
   component:DettaglioFattureComponent,
   canActivate:[AuthGuard]
 },
 {
-  path:"lista-fatture/:id/:idCliente",
+  path:"fatture/:id/:idCliente",
   component:DettaglioFattureComponent,
   canActivate:[AuthGuard]
 },
 {
-  path:"lista-fatture",
+  path:"fatture",
   component:ListaFattureComponent,
   canActivate:[AuthGuard]
 },
 {
-  path:"lista-fatture/cliente/:id",
+  path:"clienti/fatture/:id",
   component:ListaFattureComponent,
   canActivate:[AuthGuard]
 },
 {
-  path:"lista-user",
+  path:"user",
   component:ListaUserComponent,
   canActivate:[AuthGuard]
 }

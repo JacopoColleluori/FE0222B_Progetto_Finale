@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
 import { Cliente } from 'src/app/models/cliente';
 import { Comune } from 'src/app/models/comune';
 import { Provincia } from 'src/app/models/provincia';
-import { AuthService } from 'src/app/services/auth.service';
 import { ClientiService } from 'src/app/services/clienti.service';
 import { ComuneService } from 'src/app/services/comune.service';
 import { ProvinciaService } from 'src/app/services/provincia.service';
@@ -28,6 +27,7 @@ export class DettagliClienteComponent implements OnInit {
   clientId!: number;
   cliente!: Cliente;
   sub!: Subscription;
+  check!:boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -80,9 +80,14 @@ export class DettagliClienteComponent implements OnInit {
     this.clientSrv.getTipoCliente().subscribe((res) => {
       this.tipiCliente = res;
     });
+  //inizializzaione id cliente
+    this.clientId=0;
 
     //Presa cliente Id
     this.GetClientId();
+
+    //controlloIdCliente
+    this.checkId(this.clientId)
 
     //Riempimento del form
     this.fillForm();
@@ -113,7 +118,7 @@ export class DettagliClienteComponent implements OnInit {
   }
 
   restoreData(clientId: number) {
-    this.clientSrv.getClientById(this.GetClientId()).subscribe((res) => {
+    this.clientSrv.getClientById(clientId).subscribe((res) => {
       console.log(res);
       this.cliente = res;
       this.form.patchValue({
@@ -134,18 +139,38 @@ export class DettagliClienteComponent implements OnInit {
           cap: this.cliente.indirizzoSedeOperativa.cap,
           civico: this.cliente.indirizzoSedeOperativa.civico,
           localita: this.cliente.indirizzoSedeOperativa.localita,
-          comune: {
-            id: this.cliente.indirizzoSedeOperativa.comune.id,
-            provincia: this.cliente.indirizzoSedeOperativa.comune.provincia.id,
-          },
         },
       });
+
     });
+
   }
 
   fillForm() {
     if (this.clientId != 0) {
-      this.restoreData(this.clientId);
+      this.restoreData(this.GetClientId());
+      this.setComune();
     }
+  }
+setComune(){
+  this.comuneSrv.getComuni().subscribe(res=>{
+    this.comuni=res.content;
+    this.comuni.forEach(comune=>{
+      if(comune.id==this.cliente.indirizzoSedeOperativa.comune.id){
+        console.log(comune.id,this.cliente.indirizzoSedeOperativa.comune.id)
+        this.form.value.indirizzoSedeOperativa.comune=comune;
+        // this.form.value.indirizzoSedeOperativa.comune.setValue(comune)
+        // console.log(this.form.value.indirizzoSedeOperativa.comune)
+      }
+    })
+  })
+
+}
+  checkId(id:number){
+   if(id!=0){
+     this.check=true;
+   }else{
+     this.check=false;
+   }
   }
 }

@@ -1,13 +1,19 @@
 .mat-form-field {
-  width: 50%;
+  width: 45%;
   text-align: center;
-  margin-top: 1rem;
+  margin: 1rem;
   background-color: #232323;
+
 }
 
 .mat-card,
 .form-control:focus {
   background-color: #2a2a2a;
+  color: white;
+}
+
+.form-control{
+  background-color: #232323;
   color: white;
 }
 
@@ -41,4 +47,8 @@
   .mat-input-element {
     color: white;
   }
+}
+
+::ng-deep .mat-form-field-outline .mat-form-field-appearance-outline{
+  color: #9f9f9f;
 }

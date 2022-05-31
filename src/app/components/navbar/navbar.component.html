@@ -2,9 +2,9 @@
   <span >Gestionale Clienti</span>
 <button mat-button *ngIf="!this.control" [routerLink]="['/login']">Login</button>
 <button mat-button [routerLink]="['/sign-up']">SignUp</button>
-<button mat-button *ngIf="this.control" [routerLink]="['/lista-clienti']">Clienti</button>
-<button mat-button *ngIf="this.control" [routerLink]="['/lista-fatture']">Fatture</button>
-<button mat-button *ngIf="this.control" [routerLink]="['/lista-user']">Utenti</button>
+<button mat-button *ngIf="this.control" [routerLink]="['/clienti']">Clienti</button>
+<button mat-button *ngIf="this.control" [routerLink]="['/fatture']">Fatture</button>
+<button mat-button *ngIf="this.control" [routerLink]="['/user']">Utenti</button>
 <button mat-button *ngIf="this.control" (click)="delete()" >Logout</button>
 
 </mat-toolbar>
