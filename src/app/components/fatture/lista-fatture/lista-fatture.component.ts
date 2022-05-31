@@ -14,6 +14,7 @@ export class ListaFattureComponent implements OnInit {
   fatture!: any;
   sub!: Subscription;
   clientId!: number;
+  check!: boolean;
   constructor(
     private fatturaSrv: FatturaService,
     private currentRoute: ActivatedRoute
@@ -24,12 +25,12 @@ export class ListaFattureComponent implements OnInit {
     this.GetClientId();
     //presa fatture
     if (this.clientId) {
-      this.fatturaSrv.getFattureByCliente(this.clientId,0,20).subscribe(
-        res=>{
+      this.fatturaSrv
+        .getFattureByCliente(this.clientId, 0, 20)
+        .subscribe((res) => {
           console.log(res);
-          this.fatture=res;
-        }
-      )
+          this.fatture = res;
+        });
     } else {
       this.fatturaSrv.getAllFatture(0, 20).subscribe((res) => {
         this.fatture = res;
@@ -39,12 +40,20 @@ export class ListaFattureComponent implements OnInit {
   }
   onPageEvent(event: PageEvent) {
     console.log(event.pageIndex, event.pageSize);
-    this.fatturaSrv
-      .getAllFatture(event.pageIndex, event.pageSize)
-      .subscribe((res) => {
-        this.fatture = res;
-        console.log(this.fatture, this.fatture.content);
-      });
+    if (this.clientId) {
+      this.fatturaSrv.getFattureByCliente(this.clientId,event.pageIndex,event.pageSize).subscribe(
+        res=>{
+          this.fatture = res
+        })
+      }
+     else {
+      this.fatturaSrv
+        .getAllFatture(event.pageIndex, event.pageSize)
+        .subscribe((res) => {
+          this.fatture = res;
+          console.log(this.fatture, this.fatture.content);
+        });
+    }
   }
   delete(id: number) {
     this.fatturaSrv.deleteFattura(id).subscribe((res) => {
@@ -57,5 +66,10 @@ export class ListaFattureComponent implements OnInit {
       this.clientId = +res['id'];
       console.log(this.clientId);
     });
+    if (this.clientId) {
+      this.check = true;
+    } else {
+      this.check = false;
+    }
   }
 }

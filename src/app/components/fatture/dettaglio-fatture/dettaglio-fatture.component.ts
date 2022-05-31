@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Fattura } from 'src/app/models/fattura';
 import { FatturaService } from 'src/app/services/fattura.service';
@@ -19,13 +19,15 @@ export class DettaglioFattureComponent implements OnInit {
   form!: FormGroup;
   sub!: Subscription;
   fattID!: number;
-  check!: boolean;
+  checkFatt!: boolean;
   statiFatt!: any;
   fattura!: Fattura;
+  clienteId!:number;
   constructor(
     private formBuilder: FormBuilder,
     private currentRoute: ActivatedRoute,
-    private fatturaSrv: FatturaService
+    private fatturaSrv: FatturaService,
+    private router :Router
   ) {}
 
   ngOnInit(): void {
@@ -57,11 +59,15 @@ export class DettaglioFattureComponent implements OnInit {
     //presa dell'id della fattura
     this.GetFatturaId();
 
+    //presa id cliente se ci sta
+    this.getClienteId();
+
     //controllo dell'id fattura
-    this.checkId(this.fattID);
+    this.checkFattId(this.fattID);
+
 
     //controllo campi da id
-    if (this.check) {
+    if (this.checkFatt) {
       this.form.disable();
       this.form.controls['stato'].enable();
     } else {
@@ -99,21 +105,31 @@ export class DettaglioFattureComponent implements OnInit {
     this.fattura.anno=form.value.anno;
     this.fattura.importo=form.value.importo;
     this.fattura.stato.id=form.value.stato;
-
+   if(this.clienteId){this.fattura.cliente.id=this.clienteId}
+   this.fatturaSrv.setFattura(this.fattID,this.fattura).subscribe(res=>{
+     console.log(res)
+     if(this.clienteId){this.router.navigate(['/clienti/fatture',this.clienteId])}else{
+     this.router.navigate(['/fatture'])}
+   })
   }
   GetFatturaId() {
     this.sub = this.currentRoute.params.subscribe((res) => {
-      this.fattID = +res['idCliente'];
+      this.fattID = +res['id'];
       console.log(res);
       console.log(this.fattID);
     });
     return this.fattID;
   }
-  checkId(id: number) {
+  getClienteId(){
+    this.sub=this.currentRoute.params.subscribe(res=>{
+   this.clienteId=+res['idCliente']
+    })
+  }
+  checkFattId(id: number) {
     if (id != 0) {
-      this.check = true;
+      this.checkFatt = true;
     } else {
-      this.check = false;
+      this.checkFatt = false;
     }
   }
   restoreData(fatturaId:number){
@@ -125,7 +141,7 @@ export class DettaglioFattureComponent implements OnInit {
      numero:this.fattura.numero,
      anno:this.fattura.anno,
      importo:this.fattura.importo,
-     stato:this.fattura.stato
+     stato:this.fattura.stato.id
    })
     })
   }

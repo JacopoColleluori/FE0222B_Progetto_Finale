@@ -1,6 +1,6 @@
 
 <div class="container-fluid d-flex flex-wrap justify-content-evenly ">
-
+<button [routerLink]="['/fatture/0',this.clientId]" *ngIf="this.check">Crea Fattura</button>
   <mat-card *ngFor="let fatt of this.fatture.content" class="m-4 bg-dark text-light">
     <mat-card-title>
       Fattura di {{fatt.cliente.ragioneSociale}} N.:{{fatt.numero}}
@@ -14,7 +14,7 @@
       Stato Fattura: {{fatt.stato.nome}}
     </mat-card-content>
     <mat-card-actions class="d-flex justify-content-evenly">
-<button mat-raised-button color="primary" [routerLink]="['fatture/',fatt.id]">Modifica</button> <button mat-raised-button color="warn" (click)="delete(fatt.id)">elimina</button>
+<button mat-raised-button color="primary" [routerLink]="['/fatture/',fatt.id]">Modifica</button> <button mat-raised-button color="warn" (click)="delete(fatt.id)">elimina</button>
     </mat-card-actions>
   </mat-card>
 </div>
