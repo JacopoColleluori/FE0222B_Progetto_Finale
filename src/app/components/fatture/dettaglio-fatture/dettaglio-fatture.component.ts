@@ -77,7 +77,7 @@ export class DettaglioFattureComponent implements OnInit {
     this.fillForm();
   }
 
-  submit(form:any) {
+  submit(form: any) {
     console.log(form);
     if (this.fattID == 0) {
       this.fattura = {
@@ -96,7 +96,7 @@ export class DettaglioFattureComponent implements OnInit {
     this.fattura.anno = form.anno;
     this.fattura.importo = +form.importo;
     this.fattura.stato.id = form.stato;
-    console.log(this.fattura)
+    console.log(this.fattura);
     if (this.clienteId) {
       this.fattura.cliente.id = this.clienteId;
     }
@@ -140,6 +140,13 @@ export class DettaglioFattureComponent implements OnInit {
         importo: this.fattura.importo,
         stato: this.fattura.stato.id,
       });
+      // this.statiFatt.forEach((stato: { id: number }) => {
+      //   if (stato.id == this.fattura.stato.id) {
+      //     console.log(stato);
+      //     this.form.value.stato=stato;
+      //     console.log(this.form.value.stato)
+      //   }
+      // });
     });
   }
 

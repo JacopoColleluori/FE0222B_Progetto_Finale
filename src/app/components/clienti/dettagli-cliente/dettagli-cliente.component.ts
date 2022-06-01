@@ -27,7 +27,7 @@ export class DettagliClienteComponent implements OnInit {
   clientId!: number;
   cliente!: Cliente;
   sub!: Subscription;
-  check!:boolean;
+  check!: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,7 +35,7 @@ export class DettagliClienteComponent implements OnInit {
     private comuneSrv: ComuneService,
     private provinciaSrv: ProvinciaService,
     private currentRoute: ActivatedRoute,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -81,14 +81,14 @@ export class DettagliClienteComponent implements OnInit {
     this.clientSrv.getTipoCliente().subscribe((res) => {
       this.tipiCliente = res;
     });
-  //inizializzaione id cliente
-    this.clientId=0;
+    //inizializzaione id cliente
+    this.clientId = 0;
 
     //Presa cliente Id
     this.GetClientId();
 
     //controlloIdCliente
-    this.checkId(this.clientId)
+    this.checkId(this.clientId);
 
     //Riempimento del form
     this.fillForm();
@@ -101,21 +101,22 @@ export class DettagliClienteComponent implements OnInit {
     });
     return this.clientId;
   }
-  submit(form:{value:{indirizzoSedeOperativa:{comune:Comune}}}) {
-    console.log(form.value)
 
-    this.comuni.forEach(comune=>{
-      if(comune.id==form.value.indirizzoSedeOperativa.comune.id){
-        form.value.indirizzoSedeOperativa.comune=comune;
+  submit(form: { value: { indirizzoSedeOperativa: { comune: Comune } } }) {
+    console.log(form.value);
+
+    this.comuni.forEach((comune) => {
+      if (comune.id == form.value.indirizzoSedeOperativa.comune.id) {
+        form.value.indirizzoSedeOperativa.comune = comune;
       }
-    })
+    });
 
-    console.log(form.value)
-    this.clientSrv.setCliente(form.value,this.clientId).subscribe(res=>{
-      console.log(res)
-    })
+    console.log(form.value);
+    this.clientSrv.setCliente(form.value, this.clientId).subscribe((res) => {
+      console.log(res);
+    });
     console.log(this.form.value);
-    this.router.navigate(['/clienti'])
+    this.router.navigate(['/clienti']);
   }
 
   restoreData(clientId: number) {
@@ -140,38 +141,34 @@ export class DettagliClienteComponent implements OnInit {
           cap: this.cliente.indirizzoSedeOperativa.cap,
           civico: this.cliente.indirizzoSedeOperativa.civico,
           localita: this.cliente.indirizzoSedeOperativa.localita,
+          comune:this.cliente.indirizzoSedeLegale.comune
         },
       });
-
     });
-
   }
 
   fillForm() {
     if (this.clientId != 0) {
       this.restoreData(this.GetClientId());
-      this.setComune();
-    }
+    //   this.comuneSrv.getComuni().subscribe((res) => {
+    //     this.comuni = res.content;
+    //     this.comuni.forEach((com) => {
+    //       if (com.id == this.cliente.indirizzoSedeOperativa.comune.id) {
+    //         this.form.value.indirizzoSedeOperativa.comune.id = com.id;
+    //         this.form.value.indirizzoSedeOperativa.comune.nome = com.nome;
+    //         this.form.value.indirizzoSedeOperativa.comune.provincia =
+    //           com.provincia;
+    //       }
+    //     });
+    //   });
+    //   console.log(this.form.value.indirizzoSedeOperativa.comune);
+     }
   }
-setComune(){
-  this.comuneSrv.getComuni().subscribe(res=>{
-    this.comuni=res.content;
-    this.comuni.forEach(comune=>{
-      if(comune.id==this.cliente.indirizzoSedeOperativa.comune.id){
-        console.log(comune.id,this.cliente.indirizzoSedeOperativa.comune.id)
-        this.form.value.indirizzoSedeOperativa.comune=comune;
-        // this.form.value.indirizzoSedeOperativa.comune.setValue(comune)
-        // console.log(this.form.value.indirizzoSedeOperativa.comune)
-      }
-    })
-  })
-
-}
-  checkId(id:number){
-   if(id!=0){
-     this.check=true;
-   }else{
-     this.check=false;
-   }
+  checkId(id: number) {
+    if (id != 0) {
+      this.check = true;
+    } else {
+      this.check = false;
+    }
   }
 }

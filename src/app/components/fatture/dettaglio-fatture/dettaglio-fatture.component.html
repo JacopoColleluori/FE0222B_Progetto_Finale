@@ -127,7 +127,7 @@
           required
           formControlName="stato"
           class="bg-dark text-light"
-          ><mat-option *ngFor="let stato of this.statiFatt" value="{{stato.id}}">{{stato.nome}}</mat-option
+          ><mat-option *ngFor="let stato of this.statiFatt" [value]="stato.id">{{stato.nome}}</mat-option
         ></mat-select>
         <mat-error
           color="warn"

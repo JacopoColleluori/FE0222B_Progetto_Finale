@@ -260,7 +260,7 @@
               <mat-option value=""></mat-option>
               <mat-option
                 *ngFor="let com of this.comuni"
-                value="{{ com.id }}"
+                [value]="com.id"
                 >{{ com.nome }}</mat-option
               >
             </mat-select>
@@ -279,7 +279,7 @@
               <mat-option value="0"></mat-option>
               <mat-option
                 *ngFor="let prov of this.province"
-                value="{{ prov.id }}"
+                [value]="prov.id"
                 >{{ prov.nome }}</mat-option
               >
             </mat-select>
