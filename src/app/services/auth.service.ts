@@ -10,14 +10,24 @@ import { DataAuth } from '../models/dataauth';
 })
 export class AuthService {
  baseUrl:string;
+ user:any;
  loginStatus= new BehaviorSubject<boolean >(false)
  authSubject= new BehaviorSubject<null | DataAuth>(null)
+
 
   loginControl$= this.loginStatus.asObservable();
 
 
   constructor(private http:HttpClient) {
     this.baseUrl=environment.urlApi;
+    this.user=localStorage.getItem('current-user')
+    console.log(this.user)
+    if(this.user){
+      this.loginStatus.next(true)
+    }else(
+      this.loginStatus.next(false)
+    )
+
    }
    Login(data:any){
     console.log(data)
