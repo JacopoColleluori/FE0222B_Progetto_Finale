@@ -2,45 +2,75 @@
   <mat-card class="m-5">
     <mat-card-title><p></p></mat-card-title>
     <div class="container mt-5">
-      <h2 class="text-center mb-4">Pagina di Login</h2>
+      <h2 class="text-center mb-4 fs-3">Pagina di Login</h2>
       <div class="row">
         <div class="col text-center">
           <form [formGroup]="form" (ngSubmit)="submit(form.value)">
-
-              <label for="username" class="form-label fs-4 mb-3 mt-3"> Username</label>
+            <div class="container">
+              <mat-label for="username" class="form-label fs-4 mb-3 mt-5">
+                Username</mat-label
+              >
               <input
                 id="username"
                 required
                 formControlName="username"
-                class="form-control fs-4"
+                class="form-control fs-4 mt-3"
                 type="text"
                 placeholder="inserisci qui il tuo username"
               />
-              <span class="error" *ngIf="form.controls['username'].touched  && form.controls['username'].errors">Campo Obbligatorio / Username Errato</span>
+              <mat-error
+                for="username"
+                *ngIf="
+                  form.controls['username'].touched &&
+                  form.controls['username'].errors
+                "
+                >Campo Obbligatorio / Username Errato</mat-error
+              >
+            </div>
 
-              <label for="password" class="form-label fs-4 mb-3 mt-3 ">Password</label>
+            <div class="container mt-5">
+              <mat-label for="password" class="form-label fs-4 mb-3 mt-5"
+                >Password</mat-label
+              >
               <input
                 id="password"
                 required
                 formControlName="password"
-                class="form-control fs-4"
+                class="form-control fs-4 mt-3"
                 type="password"
                 placeholder="inserisci qui la tua password"
               />
-              <span class="error" *ngIf="form.controls['password'].touched  && form.controls['password'].errors">Campo Obbligatorio / Password Errata</span>
-
+              <mat-error
+                for="password"
+                *ngIf="
+                  form.controls['password'].touched &&
+                  form.controls['password'].errors
+                "
+                >Campo Obbligatorio / Password Errata</mat-error
+              >
+            </div>
 
             <div class="row">
               <div class="col d-grid">
-               <mat-card-actions>
-                  <button  mat-button   color="primary"
+                <mat-card-actions>
+                  <button
+                    mat-raised-button
+                    color="accent"
                     type="submit"
                     [disabled]="form.invalid"
-                    class="btn btn-primary fs-4 mt-3"
+                    class="fs-4 mt-3"
                   >
                     Login
-                  </button> <button type="button" mat-button [routerLink]="['/sign-up']">Registrati</button>
-               </mat-card-actions>
+                  </button>
+                  <button
+                  class="bg-success"
+                    type="button "
+                    mat-raised-button
+                    [routerLink]="['/sign-up']"
+                  >
+                    Registrati
+                  </button>
+                </mat-card-actions>
               </div>
             </div>
           </form>

@@ -12,7 +12,8 @@ import { ListaUserComponent } from './components/user/lista-user/lista-user.comp
 
 const routes: Routes = [
   {path:'',
-component:HomeComponent},
+component:HomeComponent,
+canActivate:[AuthGuard]},
   {path:"login",
 component:LoginComponent},
 {
