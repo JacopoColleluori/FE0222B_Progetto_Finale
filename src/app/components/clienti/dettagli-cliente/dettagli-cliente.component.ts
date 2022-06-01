@@ -150,18 +150,6 @@ export class DettagliClienteComponent implements OnInit {
   fillForm() {
     if (this.clientId != 0) {
       this.restoreData(this.GetClientId());
-    //   this.comuneSrv.getComuni().subscribe((res) => {
-    //     this.comuni = res.content;
-    //     this.comuni.forEach((com) => {
-    //       if (com.id == this.cliente.indirizzoSedeOperativa.comune.id) {
-    //         this.form.value.indirizzoSedeOperativa.comune.id = com.id;
-    //         this.form.value.indirizzoSedeOperativa.comune.nome = com.nome;
-    //         this.form.value.indirizzoSedeOperativa.comune.provincia =
-    //           com.provincia;
-    //       }
-    //     });
-    //   });
-    //   console.log(this.form.value.indirizzoSedeOperativa.comune);
      }
   }
   checkId(id: number) {
