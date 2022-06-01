@@ -1,4 +1,7 @@
 import {  Component, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { DataAuth } from 'src/app/models/dataauth';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,16 +10,29 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-control!:Boolean;
-  constructor(private authSrv:AuthService) { }
+checkLogin$!:Observable<boolean>
+checkUser$!:Observable<DataAuth|null>
+  constructor(private authSrv:AuthService,private router:Router) { }
 
   ngOnInit(): void {
-    this.control=this.authSrv.isLogged;
+    this.checkLogin$=this.authSrv.loginControl$
+    console.log(this.authSrv.loginControl$)
+    console.log(this.checkLogin$)
+    console.log(this.checkLogin$.subscribe())
+    // this.authSrv.loginControl$.subscribe(res=>{
+    //   console.log(res)
+
+    // })
+
   }
 
 
 delete(){
   localStorage.clear();
-  window.location.reload();
+  this.authSrv.loginStatus.next(false)
+  this.authSrv.loginControl$.subscribe()
+  console.log(this.authSrv.loginStatus)
+  console.log(this.authSrv.loginControl$)
+  this.router.navigate(['/login'])
 }
 }

@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Cliente } from 'src/app/models/cliente';
 import { Comune } from 'src/app/models/comune';
@@ -34,7 +34,8 @@ export class DettagliClienteComponent implements OnInit {
     private clientSrv: ClientiService,
     private comuneSrv: ComuneService,
     private provinciaSrv: ProvinciaService,
-    private currentRoute: ActivatedRoute
+    private currentRoute: ActivatedRoute,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -114,7 +115,7 @@ export class DettagliClienteComponent implements OnInit {
       console.log(res)
     })
     console.log(this.form.value);
-    this.form.reset;
+    this.router.navigate(['/clienti'])
   }
 
   restoreData(clientId: number) {

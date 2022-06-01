@@ -1,11 +1,85 @@
 <mat-toolbar class="justify-content-evenly bg-dark text-light">
-  <span >Gestionale Clienti</span>
-  <button mat-button *ngIf="this.control" [routerLink]="['/']">Home</button>
-<button mat-button *ngIf="!this.control" [routerLink]="['/login']">Login</button>
-<button mat-button [routerLink]="['/signup']">SignUp</button>
-<button mat-button *ngIf="this.control" [routerLink]="['/clienti']">Clienti</button>
-<button mat-button *ngIf="this.control" [routerLink]="['/fatture']">Fatture</button>
-<button mat-button *ngIf="this.control" [routerLink]="['/user']">Utenti</button>
-<button mat-button *ngIf="this.control" (click)="delete()" >Logout</button>
+  <span>Fatture e Clienti</span>
 
+  <span *ngIf="(this.checkLogin$ | async) as checkLogin">
+    <button
+      #rla="routerLinkActive"
+      mat-raised-button
+      *ngIf="!checkLogin"
+      [routerLink]="['/']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [color]="rla.isActive && 'primary'"
+    >
+      Home
+    </button>
+  </span>
+
+  <span *ngIf="!(this.checkLogin$ | async) as checkLogin">
+    <button
+      #rla="routerLinkActive"
+      mat-raised-button
+      *ngIf="checkLogin"
+      [routerLink]="['/login']"
+      routerLinkActive="active"
+      [color]="rla.isActive && 'primary'"
+    >
+      Login
+    </button>
+  </span>
+
+  <button
+    #rla="routerLinkActive"
+    mat-raised-button
+    [routerLink]="['/signup']"
+    [color]="rla.isActive && 'primary'"
+    routerLinkActive="active"
+  >
+    SignUp
+  </button>
+ <span *ngIf="(this.checkLogin$ | async) as checkLogin">
+    <button
+      #rla="routerLinkActive"
+      mat-raised-button
+      *ngIf="checkLogin"
+      [routerLink]="['/clienti']"
+      routerLinkActive="active"
+      [color]="rla.isActive && 'primary'"
+    >
+      Clienti
+    </button>
+ </span>
+  <span *ngIf="(this.checkLogin$ | async) as checkLogin">
+    <button
+      #rla="routerLinkActive"
+      mat-raised-button
+      *ngIf="checkLogin"
+      [routerLink]="['/fatture']"
+      routerLinkActive="active"
+      [color]="rla.isActive && 'primary'"
+    >
+      Fatture
+    </button>
+  </span>
+<span *ngIf="(this.checkLogin$ | async) as checkLogin">
+    <button
+      #rla="routerLinkActive"
+      mat-raised-button
+      *ngIf="checkLogin"
+      [routerLink]="['/user']"
+      routerLinkActive="active"
+      [color]="rla.isActive && 'primary'"
+    >
+      Utenti
+    </button>
+</span>
+<span *ngIf="(this.checkLogin$ | async) as checkLogin">
+    <button
+      mat-raised-button
+      *ngIf="checkLogin"
+      (click)="delete()"
+    >
+      Logout
+    </button>
+</span>
 </mat-toolbar>

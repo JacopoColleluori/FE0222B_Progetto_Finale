@@ -1,0 +1,17 @@
+.cardClicked {
+  color: white;
+  padding-top: 2rem;
+  background-color: #232323;
+  margin: 3rem;
+  align-items: center;
+  align-content: center;
+  font-size: 2rem;
+  font-weight: 400;
+  height: 10rem;
+  width: 20rem;
+  text-align: center;
+}
+.cardClicked:hover{
+cursor: pointer;
+background-color: #191919;
+}

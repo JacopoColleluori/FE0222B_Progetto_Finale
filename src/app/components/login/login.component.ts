@@ -28,7 +28,10 @@ this.authSrv.Login(form).subscribe((res)=>{
   this.user=res;
   console.log(this.user);
   localStorage.setItem('current-user',JSON.stringify(this.user))
-  this.router.navigate(['/user'])
+  this.authSrv.loginStatus.next(true)
+  console.log(this.authSrv.loginStatus)
+  console.log(this.authSrv.loginControl$)
+  this.router.navigate(['/'])
 })
   }
  getFormControl(htmlElement:string){

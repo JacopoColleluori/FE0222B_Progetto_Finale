@@ -1,5 +1,5 @@
-<div class="container">
-  <button [routerLink]="['/fatture']" mat-raised-button>Lista Fatture</button>
-  <button [routerLink]="['/clienti']">Lista Clienti</button>
-  <button [routerLink]="['/user']">Lista Utenti</button>
+<div class="container d-lg-flex justify-content-evenly">
+  <mat-card [routerLink]="['/fatture']" class="cardClicked">Lista Fatture</mat-card>
+  <mat-card [routerLink]="['/clienti']" class="cardClicked">Lista Clienti</mat-card>
+  <mat-card [routerLink]="['/user']" class="cardClicked">Lista Utenti</mat-card>
 </div>

@@ -1,30 +1,49 @@
 
-<div class="container-fluid d-flex flex-wrap justify-content-evenly ">
-<button [routerLink]="['/fatture/0',this.clientId]" *ngIf="this.check">Crea Fattura</button>
-  <mat-card *ngFor="let fatt of this.fatture.content" class="m-4 bg-dark text-light">
+<div class="container text-center">
+   <button
+   [routerLink]="['/fatture/0', this.clientId]"
+   *ngIf="this.check"
+   mat-raised-button
+  class="bg-success text-light w-25 mt-3"
+  >
+   Crea Fattura
+  </button>
+</div>
+<div class="container-fluid d-flex flex-wrap justify-content-evenly">
+  <mat-card
+    *ngFor="let fatt of this.fatture.content"
+    class="m-4 bg-dark text-light"
+  >
     <mat-card-title>
-      Fattura di {{fatt.cliente.ragioneSociale}} N.:{{fatt.numero}}
+      Fattura di {{ fatt.cliente.ragioneSociale }} N.:{{ fatt.numero }}
     </mat-card-title>
     <mat-card-subtitle>
-      data: {{fatt.data | date:'dd-MM-yyyy'}}
+      data: {{ fatt.data | date: "dd-MM-yyyy" }}
     </mat-card-subtitle>
     <mat-card-content>
-      importo fattura: {{fatt.importo}} €<br>
-      Id Fattura: {{fatt.id}} <br>
-      Stato Fattura: {{fatt.stato.nome}}
+      importo fattura: {{ fatt.importo }} €<br />
+      Id Fattura: {{ fatt.id }} <br />
+      Stato Fattura: {{ fatt.stato.nome }}
     </mat-card-content>
     <mat-card-actions class="d-flex justify-content-evenly">
-<button mat-raised-button color="primary" [routerLink]="['/fatture/',fatt.id]">Modifica</button> <button mat-raised-button color="warn" (click)="delete(fatt.id)">elimina</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/fatture/', fatt.id]"
+      >
+        Modifica
+      </button>
+      <button mat-raised-button color="warn" (click)="delete(fatt.id)">
+        elimina
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>
 <mat-paginator-goto
   [length]="this.fatture.totalElements"
-  [pageSizeOptions]="[20,10,5,50,100]"
+  [pageSizeOptions]="[20, 10, 5, 50, 100]"
   [pageSize]="this.fatture.pageable.pageSize"
   aria-label="Select page"
   (page)="onPageEvent($event)"
-
-  >
+>
 </mat-paginator-goto>
-
